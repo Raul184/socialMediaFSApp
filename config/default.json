@@ -1,0 +1,4 @@
+{
+  "mongoUri" : "mongodb+srv://Murciegalo:murcielago123@socialapp-pw96m.mongodb.net/test?retryWrites=true&w=majority",
+  "jwtSecret": "secreto"
+}
