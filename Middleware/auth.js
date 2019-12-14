@@ -6,7 +6,7 @@ module.exports = function( req, res , next ){
   const token = req.header('x-auth-token');
 
   if(!token){
-    res.status(401).json({ err: 'No token , authoritazion denied'});
+    res.status(401).json({ error: 'No token , authoritazion denied'});
   }
   try {
     const decoded = jwt.verify(token , config.get('jwtSecret'));

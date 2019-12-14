@@ -10,7 +10,7 @@ const bcrypt = require('bcryptjs');
 
 
 // @route     POST api/auth
-// @desc      Authenticate User and get Token 
+// @desc      Authenticate User and get Token (Login)
 // @access    Public 
 router.post(
   '/' , 
