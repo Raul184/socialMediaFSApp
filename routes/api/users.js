@@ -40,40 +40,38 @@ router.post(
       if(user){
         return res.status(400).json('User already exists')
       }
-      else{
       //Get an avatar for User 
-        const avatar = gravatar.url( email , {
-          s: '200',
-          r: 'pg',
-          d: 'mm'
-        })
+      const avatar = gravatar.url( email , {
+        s: '200',
+        r: 'pg',
+        d: 'mm' 
+      })
       //Create User
-        user = User({ name , email , password , avatar });
+      user = User({ name , email , password , avatar });
         
       //Encrypt Password
           //hashing tool
-        const salt = await bcrypt.genSalt(10);
-        user.password = await bcrypt.hash( password , salt ); 
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash( password , salt ); 
         
-        await user.save();
-      //Return JWT ( user => Register => Automatically logs in )
-        const payload = {
-          user: {
-            id: user.id
-          }
+      await user.save();
+      // GENERATE and Return JWT to the browser
+      const payload = {
+        user: {
+          id: user.id
         }
-        jwt.sign( 
-          payload , 
-          config.get('jwtSecret') ,
-          { expiresIn: 36000 } ,
-          (err, token) => 
-          {
-            if(err) throw err ;
-            res.json({token}) 
-          }
-        )
-      }  
-    } 
+      }
+      jwt.sign( 
+        payload , 
+        config.get('jwtSecret') ,
+        { expiresIn: 3600 } ,
+        (err, token) => 
+        {
+          if(err) throw err ;
+          res.json({token}) 
+        }
+      )
+    }  
     catch (error) 
     {
       console.log(error.message);
