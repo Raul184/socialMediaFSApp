@@ -1,4 +1,6 @@
 {
   "mongoUri" : "mongodb+srv://Murciegalo:murcielago123@socialapp-pw96m.mongodb.net/test?retryWrites=true&w=majority",
-  "jwtSecret": "secreto"
+  "jwtSecret": "secreto" ,
+  "githubClientID" : "5dd97e9407ca709517d4", 
+  "githubClientSecret" : "07d2fdb28f2ddd19d8b9a23d0c7510c41dd873bd" 
 }
