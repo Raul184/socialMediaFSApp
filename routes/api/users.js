@@ -9,12 +9,6 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 
-// @route   GET api/users
-// @desc
-// @access Public 
-router.get('/' , (req, res) => {
-  res.send('User route');
-});
 
 // @route   POST api/users
 // @desc    Register Users
@@ -47,7 +41,7 @@ router.post(
         d: 'mm' 
       })
       //Create User
-      user = User({ name , email , password , avatar });
+      user = new User({ name , email , password , avatar });
         
       //Encrypt Password
           //hashing tool
