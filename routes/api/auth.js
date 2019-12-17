@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-// const middleware = require('../../Middleware/auth');
+const middleware = require('../../Middleware/auth');
 //Model
 const User = require('../../models/User');
 const { check , validationResult } = require('express-validator');
@@ -8,7 +8,21 @@ const jwt = require('jsonwebtoken');
 const config = require('config');
 const bcrypt = require('bcryptjs');
 
-
+// Match Tokens , Verify User and send it 
+router.get(
+  '/' ,
+  middleware,
+  async ( req , res ) => {
+    try {
+      const user = await User.findById( req.user.id ).select('-password');
+      res.json(user);  
+    } 
+    catch (error) {
+      console.error(error.message);
+      res.status(500).send('Server Error');
+    }
+  }
+)
 // @route     POST api/auth
 // @desc      Authenticate User and get Token (Login)
 // @access    Public 
