@@ -4,12 +4,12 @@ import { Link } from 'react-router-dom';
 // redux
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
+import { register } from '../../actions/auth';
 //packs
 import { FaUser } from 'react-icons/fa';
-import axios from 'axios';
 
 
-const Register = ({ setAlert }) => {
+const Register = ({ setAlert , register }) => {
   const [ formData , setData ] = useState({
     name: '',
     email: '',
@@ -24,8 +24,7 @@ const Register = ({ setAlert }) => {
       setAlert('Passwords don\'t match' , 'danger')
     }
     else {
-      const nueUser = { name , email , password };
-      console.log(nueUser);
+      register({ name , email , password })
     }
   }
 
@@ -73,7 +72,8 @@ const Register = ({ setAlert }) => {
             minLength="6"
             onChange ={e => handleChange(e)}
             value={password} 
-            required/>
+            required
+          />
         </div>
         <div className="form-group">
           <input 
@@ -83,7 +83,8 @@ const Register = ({ setAlert }) => {
             minLength="6" 
             onChange ={e => handleChange(e)}
             value={password2}
-            required/>
+            required
+          />
         </div>
         <input type="submit" className="btn btn-primary" value="Register"/>
       </form> 
@@ -98,5 +99,5 @@ Register.propTypes = {
 
 export default connect(
   null ,
-  { setAlert }
+  { setAlert , register }
 )(Register);
