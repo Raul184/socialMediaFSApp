@@ -10,7 +10,7 @@ const Landing = props => {
           <h1 className="x-large">Social & Devs</h1>
           <p className="lead">Share with more devs about technology , open source projects and enjoy our meetups!</p>
           <div className="buttons">
-            <Link to="/register">Sign up</Link>
+            <Link to="/register">Sign up{' '}</Link>
             <Link to="/login">Login</Link>
           </div>
         </div>
