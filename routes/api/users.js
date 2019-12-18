@@ -62,14 +62,14 @@ router.post(
         (err, token) => 
         {
           if(err) throw err ;
-          res.json({token}) 
+          return res.json({token}) 
         }
       )
     }  
     catch (error) 
     {
       console.log(error.message);
-      res.status(500).send('Server Error');
+      return res.status(500).send('Server Error');
     }
   }
 );

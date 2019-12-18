@@ -15,7 +15,7 @@ router.get(
   async ( req , res ) => {
     try {
       const user = await User.findById( req.user.id ).select('-password');
-      res.json(user);  
+      return res.json(user);  
     } 
     catch (error) {
       console.error(error.message);
@@ -72,7 +72,7 @@ router.post(
     catch (error) 
     {
       console.log(error.message);
-      res.status(500).send('Server Error ');
+      return res.status(500).send('Server Error ');
     }
 })
 module.exports = router;
