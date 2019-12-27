@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { FaCode, FaSignOutAlt } from 'react-icons/fa';
+import { FaCode, FaSignOutAlt , FaUserCircle} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 //redux
 import { connect } from 'react-redux';
@@ -11,6 +11,11 @@ const Nav = ({ isAuth , logout }) => {
     <nav className="navbar bg-dark">
       <h1><Link to=""><FaCode />Social & Devs</Link></h1>
       <ul>
+        <li>
+          <Link to="/dashboard">
+          <FaUserCircle style={{"margin-right": "5px"}} />
+          <span>Dashboard</span></Link>
+        </li>
         <li><Link to="">Developers</Link></li>
         { isAuth ? 
           <li><Link to="#" onClick={logout}><FaSignOutAlt />{' '}Logout</Link></li> 
