@@ -19,17 +19,19 @@ router.get(
   async (req, res) => {
   try {
     // Find Profile ?
-    const profile = await Profile.findOne({ user: req.user.id })
-      .populate( 'user', [ 'name' , 'avatar' ]);
+    const profile = await Profile.findOne({ user: req.user.id }).populate( 
+      'user', 
+      [ 'name' , 'avatar' ]
+    );
 
     if(!profile){
-      res.status(400).json({ msg: 'Sorry , profile not found'});
+      return res.status(400).json({ msg: 'No associated profile for this user'});
     }
     res.json({ profile });
   } 
   catch (error) {
     console.log(error.message);
-    res.status(500).send('Server Error');  
+    return res.status(500).send('Server Error');  
   }
 })
 
@@ -105,7 +107,7 @@ router.post(
     } 
     catch (error) {
       console.error(error.message);
-      res.status(500).send('Server Error');
+      return res.status(500).send('Server Error');
     }
   } 
 )
