@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 
 const Landing = ({ isAuthenticated }) => {
   if(isAuthenticated){
-    <Redirect to='/dashboard' />
+    return <Redirect to='/dashboard' />
   }
   return (
     <section className="landing">

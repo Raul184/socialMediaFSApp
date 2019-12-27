@@ -1,21 +1,39 @@
 import React , { useEffect } from 'react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom';
 //redx
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
+//comps.
+import Spinner from '../layout/Spinner';
+import { FaUser } from 'react-icons/fa';
 
-
-const Dashboard = ({ profile ,  auth , getCurrentProfile }) => {
+const Dashboard = ({ profile : { profile , loading } ,  auth: { user } , getCurrentProfile }) => {
   useEffect(() => {
     getCurrentProfile();
   },
   //eslint-disable-next-line 
   [])
-  return (
+  return loading && profile === null ? 
+    <Spinner /> 
+    :  
     <>
-      <h1>hello</h1>
+      <h1 className="large text-primary">hello</h1>
+      <p className="lead">
+        <FaUser /> Welcome { user && user.name }
+      </p>
+      {profile !== null ? 
+        <></>
+        :
+        <>
+          <hr/>
+          <Link to='/create-profile' className="btn btn-primary my-1">
+            Create a profile
+          </Link>
+          <p><small>You have yet to create a profile , please add some info</small></p>
+        </>
+      }
     </>
-  )
 }
 
 Dashboard.propTypes = {
