@@ -1,12 +1,12 @@
 import React , { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom'
+import { Link , withRouter } from 'react-router-dom'
 import { FaTwitter , FaFacebook , FaYoutube , FaInstagram , FaLinkedin } from 'react-icons/fa';
 //rdx
 import { connect } from 'react-redux';
+import { createProfile } from '../../actions/profile';
 
-
-const CreateProfile = (props) => {
+const CreateProfile = ({ createProfile , history }) => {
   const [ data , setData ] = useState({
     company: '' ,
     website: '' ,
@@ -28,24 +28,25 @@ const CreateProfile = (props) => {
   
   const [ displaySocial , toggleSocial ] = useState(false);
 
-  const handleChange = (e) => {
+  const handleChange = e => {
     setData({
       ...data ,
       [e.target.name] : e.target.value
     })
   }
-  const handleSubmit = (e) => {
-    e.preventDefault()
+  const handleSubmit = e => {
+    e.preventDefault();
+    createProfile( data , history );
   }
   return (
     <>
       <h1 className="large">Create profile</h1>
       <p className="lead">Some interesting facts about you</p>
-      <form className="form" onSubmit={handleSubmit}>
+      <form className="form" onSubmit={e => handleSubmit(e)}>
         <small>* required fields</small>
         <div className="form-group">
-          <select name="status" value={status} onChange={handleChange}>
-            <option value="0">Professional status</option>
+          <select name="status" value={status} onChange={handleChange} >
+            <option value="0">--</option>
             <option value="Developer">Developer</option>
             <option value="Junior Developer">Junior Developer</option>
             <option value="Senior Developer">Senior Developer</option>
@@ -68,15 +69,15 @@ const CreateProfile = (props) => {
           <small className="form-text">Country / city</small>
         </div>
         <div className="form-group">
-          <input type="text" onChange={handleChange}name="skills" placeholder="Skills" value={skills}/>
+          <input type="text" onChange={handleChange}name="skills" placeholder="Skills" value={skills} required/>
           <small className="form-text">* / Comma separated value ( JS , php , java ...)</small>
         </div>
         <div className="form-group">
           <input type="text" onChange={handleChange}name="githubusername" placeholder="Github account name" value={githubusername}/>
         </div>
         <div className="form-group">
-          <input type="text" onChange={handleChange}name="bio" placeholder="brief bio" value={bio}/>
           <small className="form-text">What about you?</small>
+          <input type="text" onChange={handleChange}name="bio" placeholder="brief bio" value={bio}/>
         </div>
         <div className="my-2">
           <button className="btn" onClick={() => toggleSocial(!displaySocial)}>
@@ -107,7 +108,7 @@ const CreateProfile = (props) => {
             </div>  
           </>
         }
-        <button type="submit" className="btn btn-primary">Submit</button>
+        <input type="submit" className="btn btn-primary"/>
         <Link to='/dashboard' className="btn btn-light my-1">Back</Link>
       </form>
     </>
@@ -115,8 +116,9 @@ const CreateProfile = (props) => {
 }
 
 CreateProfile.propTypes = {
-
+  createProfile: PropTypes.func.isRequired,
 }
+
 const styles = {
   width: "2em" ,
   height: "2em" ,
@@ -128,5 +130,5 @@ const mapStateToProps = state => ({
 
 export default connect(
   mapStateToProps ,
-  {}
-)(CreateProfile);
+  { createProfile }
+)(withRouter(CreateProfile));
