@@ -13,7 +13,7 @@ const Nav = ({ isAuth , logout }) => {
       <ul>
         <li>
           <Link to="/dashboard">
-          <FaUserCircle style={{"margin-right": "5px"}} />
+          <FaUserCircle style={{"marginRight": "5px"}} />
           <span>Dashboard</span></Link>
         </li>
         <li><Link to="">Developers</Link></li>
@@ -31,7 +31,7 @@ const Nav = ({ isAuth , logout }) => {
 }
 
 Nav.propTypes = {
-  isAuth: PropTypes.bool.isRequired,
+  isAuth: PropTypes.bool,
 }
 const mapStateToProps = state => ({
   isAuth : state.auth.isAuthenticated 

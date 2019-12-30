@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { Route , Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux';
@@ -19,7 +19,7 @@ const privateRoute = (
 
 privateRoute.propTypes = {
   auth: PropTypes.object.isRequired,
-  component: PureComponent ,
+  component: PropTypes.object, 
 }
 
 const mapStateToProps = state => ({
