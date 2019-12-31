@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
 //comps.
 import Spinner from '../layout/Spinner';
-import { FaUser } from 'react-icons/fa';
+import { DashActions } from './DashActions';
+
 
 const Dashboard = ({ profile : { profile , loading } ,  auth: { user } , getCurrentProfile }) => {
   useEffect(() => {
@@ -20,10 +21,12 @@ const Dashboard = ({ profile : { profile , loading } ,  auth: { user } , getCurr
     <>
       <h1 className="large text-primary">hello</h1>
       <p className="lead">
-        <FaUser /> Welcome { user && user.name }
+        Welcome { user && user.name }
       </p>
       {profile !== null ? 
-        <></>
+        <>
+          <DashActions />
+        </>
         :
         <>
           <hr/>

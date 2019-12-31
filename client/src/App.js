@@ -10,12 +10,13 @@ import Register from './components/auth/Register';
 import Alert from './components/layout/Alert';
 import Dashboard from './components/dashboard/Dashboard';
 import CreateProfile from './components/profile-form/CreateProfile';
-
+import EditProfile from './components/profile-form/EditProfile';
 //Redux
 import { Provider } from 'react-redux';
 import store from './store';
 import setAuthToken from './utils/setAuthToken';
 import { loadUser } from './actions/auth';
+
 
 //Is there an User to load?
 if(localStorage.token){
@@ -39,6 +40,7 @@ function App(){
           <Route exact path='/register' render={() => <Register/>}/>
           <PrivateRoute exact path='/dashboard' component={Dashboard}/>
           <PrivateRoute exact path='/create-profile' component={CreateProfile}/>
+          <PrivateRoute exact path='/edit-profile' component={EditProfile}/>
         </Switch>
       </section>
     </Provider>
