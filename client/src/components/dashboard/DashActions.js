@@ -10,7 +10,7 @@ export const DashActions = () => {
         <FaUser/>
         Edit Profile
       </Link>
-      <Link to="/edit-experience" className="btn btn-primary">
+      <Link to="/add-experience" className="btn btn-primary">
         <FaBlackTie/>
         Add Experience
       </Link>
