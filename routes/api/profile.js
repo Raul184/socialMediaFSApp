@@ -4,6 +4,8 @@ const middleware = require('../../Middleware/auth');
 // Model
 const Profile = require('../../models/Profile');
 const User = require('../../models/User');
+const Post = require('../../models/Posts');
+//validations
 const { check , validationResult } = require('express-validator');
 // Request ==> Hit third party Api from Server Side of App
 const request = require('request');
@@ -160,6 +162,8 @@ router.delete(
   middleware ,
   async (req , res) => {
     try {
+      // Remove User posts
+      await Post.deleteMany({ user: req.user.id })
       // Remove Profile
       await Profile.findOneAndRemove({ user: req.user.id });
       // Remove User
@@ -204,7 +208,7 @@ router.put(
     };
     try {
       const profile = await Profile.findOne({ user: req.user.id });
-      profile.unshift(nueExperience);
+      profile.experience.unshift(nueExperience);
       await profile.save();
       res.json(profile);
     } 
@@ -276,7 +280,7 @@ router.put(
     };
     try {
       const profile = await Profile.findOne({ user: req.user.id });
-      profile.unshift(nueEdu);
+      profile.education.unshift(nueEdu);
       await profile.save();
       res.json(profile);
     } 

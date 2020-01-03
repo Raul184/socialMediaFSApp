@@ -5,7 +5,7 @@ import { connect } from 'react-redux';
 import { addExperience } from '../../actions/profile';
 import { FaCodeBranch } from 'react-icons/fa'
 
-const AddExperience = ({ profile : {} , addExperience , history }) => {
+const AddExperience = ({  addExperience , history }) => {
   const [ data , setData ] = useState({
     title: '' ,
     company: '' ,
@@ -31,19 +31,19 @@ const AddExperience = ({ profile : {} , addExperience , history }) => {
   }
   return (
     <>
-      <h1 class="large text-primary">
+      <h1 className="large text-primary">
         Add An Experience
       </h1>
-      <p class="lead">
+      <p className="lead">
         <FaCodeBranch /> 
         Add any developer/programming positions that you have had in the past
       </p>
       <small>* = required field</small>
       <form className="form" onSubmit={handleSubmit}>
         <div className="form-group">
+          <small>* job title</small>
           <input 
-            type="text" 
-            placeholder="* Job Title" 
+            type="text"  
             name="title" 
             value={title} 
             onChange={handleChange}
@@ -51,9 +51,9 @@ const AddExperience = ({ profile : {} , addExperience , history }) => {
           />
         </div>
         <div className="form-group">
+          <small>* Company</small>
           <input 
-            type="text" 
-            placeholder="* Company" 
+            type="text"  
             name="company" 
             value={company} 
             onChange={handleChange}
@@ -61,9 +61,9 @@ const AddExperience = ({ profile : {} , addExperience , history }) => {
           />
         </div>
         <div className="form-group">
+          <small>Location</small>
           <input 
-            type="text" 
-            placeholder="Location" 
+            type="text"  
             name="location"
             value={location} 
             onChange={handleChange} 
@@ -76,6 +76,7 @@ const AddExperience = ({ profile : {} , addExperience , history }) => {
             name="from"
             value={from} 
             onChange={handleChange} 
+            required
           />
         </div>
           <div className="form-group">

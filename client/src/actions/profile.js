@@ -3,7 +3,13 @@ import { setAlert } from './alert';
 import {
   GET_PROFILE ,
   PROFILE_ERROR,
-  UPDATE_PROFILE
+  UPDATE_PROFILE,
+  DELETE_PROFILE_EDUCATION_SUCCESS,
+  DELETE_PROFILE_EDUCATION_FAIL,
+  DELETE_PROFILE_EXPERIENCE_SUCCESS,
+  DELETE_PROFILE_EXPERIENCE_FAIL,
+  CLEAR_PROFILE,
+  ACCOUNT_DELETED
 } from './types';
 
 // GET current User profile
@@ -41,7 +47,7 @@ export const createProfile = ( formData , history , edit=false ) =>
 
       let editP = edit ? 'Profile Update' : 'Profile Created'
       dispatch( setAlert( editP , 'success'));
-      if(!edit){
+      if(edit){
         history.push('/dashboard')
       }
     } 
@@ -106,5 +112,61 @@ export const addEducation = (data , history) => async dispatch => {
       type: PROFILE_ERROR ,
       payload: { msg: error.response.statusText , status: error.response.status }
     })
+  }
+}
+
+// DELETE Education
+export const deleteEdu = id => async dispatch => {
+  try {
+    const profile = await axios.delete(`api/profile/education/${id}`)
+    console.log('DELETE Education' , profile.data);
+    dispatch({
+      type: DELETE_PROFILE_EDUCATION_SUCCESS ,
+      payload: profile.data
+    })
+    dispatch( setAlert('Education deleted' , 'success'));  
+  } 
+  catch (error) {
+    dispatch({
+      type: DELETE_PROFILE_EDUCATION_FAIL ,
+      payload: { msg: error.response.statusText , status: error.response.status }
+    })
+  }
+}
+
+// DELETE Experience
+export const deleteExp = id => async dispatch => {
+  try {
+    const profile = await axios.delete(`api/profile/experience/${id}`)
+    dispatch({
+      type: DELETE_PROFILE_EXPERIENCE_SUCCESS ,
+      payload: profile.data
+    })
+    dispatch( setAlert('Experience deleted' , 'success'));  
+  } 
+  catch (error) {
+    dispatch({
+      type: DELETE_PROFILE_EXPERIENCE_FAIL ,
+      payload: { msg: error.response.statusText , status: error.response.status }
+    })
+  }
+}
+
+
+// DELETE account && profile
+export const deleteAcc = () => async dispatch => {
+  if(window.confirm('Are you sure? This canNOT be undone!'))
+  {
+    try {
+      const res = await axios.delete('api/profile');
+
+      dispatch({ type: CLEAR_PROFILE })
+      dispatch({ type: ACCOUNT_DELETED })
+
+      dispatch( setAlert( 'Account deleted' , 'success' ))
+    } 
+    catch (error) {
+      
+    }
   }
 }

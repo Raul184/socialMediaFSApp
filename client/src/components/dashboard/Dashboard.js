@@ -4,17 +4,21 @@ import { Link } from 'react-router-dom';
 //redx
 import { connect } from 'react-redux';
 import { getCurrentProfile } from '../../actions/profile';
+import { deleteAcc } from '../../actions/profile';
 //comps.
 import Spinner from '../layout/Spinner';
 import { DashActions } from './DashActions';
+import Experiences from './Experiences';
+import Education from './Education';
+//icon
+import { FaUserMinus } from 'react-icons/fa'
 
-
-const Dashboard = ({ profile : { profile , loading } ,  auth: { user } , getCurrentProfile }) => {
+const Dashboard = ({ profile : { profile , loading } ,  auth: { user } , getCurrentProfile , deleteAcc }) => {
   useEffect(() => {
     getCurrentProfile();
   },
   //eslint-disable-next-line 
-  [])
+  [ ])
   return loading && profile === null ? 
     <Spinner /> 
     :  
@@ -26,6 +30,18 @@ const Dashboard = ({ profile : { profile , loading } ,  auth: { user } , getCurr
       {profile !== null ? 
         <>
           <DashActions />
+          <Education education={profile.education}/>
+          <Experiences experience={profile.experience}/>
+
+          <div className="my-2">
+            <button 
+              className="btn btn-danger"
+              onClick={ () => deleteAcc() }
+            >
+              <FaUserMinus />{' '}
+              Delete my account
+            </button>
+          </div>
         </>
         :
         <>
@@ -41,6 +57,7 @@ const Dashboard = ({ profile : { profile , loading } ,  auth: { user } , getCurr
 
 Dashboard.propTypes = {
   getCurrentProfile: PropTypes.func.isRequired,
+  deleteAcc: PropTypes.func.isRequired,
   profile: PropTypes.object.isRequired,
   auth: PropTypes.object.isRequired,
 }
@@ -51,5 +68,5 @@ const mapStateToProps = state => ({
 })
 export default connect(
   mapStateToProps ,
-  { getCurrentProfile }
+  { getCurrentProfile , deleteAcc }
 )(Dashboard);

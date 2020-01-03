@@ -7,15 +7,15 @@ export const DashActions = () => {
   return (
     <div className="dash-buttons">
       <Link to="/edit-profile" className="btn btn-primary">
-        <FaUser/>
+        <FaUser/>{' '}
         Edit Profile
       </Link>
       <Link to="/add-experience" className="btn btn-primary">
-        <FaBlackTie/>
+        <FaBlackTie/>{' '}
         Add Experience
       </Link>
-      <Link to="/edit-education" className="btn btn-primary">
-        <FaUserGraduate/>
+      <Link to="/add-education" className="btn btn-primary">
+        <FaUserGraduate/>{' '}
         Add Education
       </Link>
     </div>
