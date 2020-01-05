@@ -4,9 +4,10 @@ import Spinner from '../layout/tenor.gif'
 //redux
 import { connect } from 'react-redux'
 import { getPosts } from '../../actions/posts'
+//comps.
+import PostItem from './PostItem';
 
-
-const Posts = ({ getPosts , posts : { posts , loading } }) => {
+const Posts = ({ getPosts , post : { posts , loading } }) => {
   useEffect(
     () => {
       getPosts();  
@@ -15,7 +16,10 @@ const Posts = ({ getPosts , posts : { posts , loading } }) => {
 
   return (
     <>
-      
+      <h1 className="text-primary">Welcome to the community</h1>
+      <div className="posts">
+        {posts.map( post => <PostItem key={post._id} post={post}/> )}
+      </div>
     </>
   )
 }
@@ -25,7 +29,7 @@ Posts.propTypes = {
 }
 
 const mapStateToProps = state => ({
-  posts: state.posts
+  post: state.posts
 })
 
 export default connect(

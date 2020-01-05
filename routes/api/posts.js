@@ -107,7 +107,7 @@ router.get(
   middleware ,
   async( req, res ) => {
     try {
-      const posts = await PostsSchema.find
+      const posts = await PostsSchema.find();
       if(!posts){
         return res.status(404).json({ msg: 'Sorry , the dog eat all posts'})
       }
