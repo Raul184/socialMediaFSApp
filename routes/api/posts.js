@@ -107,15 +107,15 @@ router.get(
   middleware ,
   async( req, res ) => {
     try {
-      const posts = await PostsSchema.find.sort({ date: -1});
+      const posts = await PostsSchema.find
       if(!posts){
         return res.status(404).json({ msg: 'Sorry , the dog eat all posts'})
       }
-      res.json(posts);
+      return res.json(posts);
     } 
     catch (error) {
       console.error(error.message);
-      res.status(500).send('Server Error');  
+      return res.status(500).send('Server Error');  
     }
   }
 )

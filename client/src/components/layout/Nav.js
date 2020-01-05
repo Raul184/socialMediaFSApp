@@ -11,18 +11,21 @@ const Nav = ({ isAuth , logout }) => {
     <nav className="navbar bg-dark">
       <h1><Link to=""><FaCode />Social & Devs</Link></h1>
       <ul>
-        <li>
-          <Link to="/dashboard">
-          <FaUserCircle style={{"marginRight": "5px"}} />
-          <span>Dashboard</span></Link>
-        </li>
-        <li><Link to="">Developers</Link></li>
         { isAuth ? 
-          <li><Link to="#" onClick={logout}><FaSignOutAlt />{' '}Logout</Link></li> 
+          <>
+            <li>
+              <Link to="/dashboard">
+              <FaUserCircle style={{"marginRight": "5px"}} />
+              <span>Dashboard</span></Link>
+            </li>
+            <li><Link to="/posts">Posts</Link></li> 
+            <li><Link to="#" onClick={logout}><FaSignOutAlt />{' '}Logout</Link></li> 
+          </>
           : 
           <>
           <li><Link to="/register">Register</Link></li>
           <li><Link to="/login">Login</Link></li>
+          <li><Link to="">Developers</Link></li>
           </>
         }        
       </ul>

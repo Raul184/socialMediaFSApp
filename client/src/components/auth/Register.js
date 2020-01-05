@@ -1,6 +1,6 @@
 import React , { useState } from 'react'
 import PropTypes from 'prop-types'
-import { Link } from 'react-router-dom';
+import { Link , withRouter } from 'react-router-dom';
 // redux
 import { connect } from 'react-redux';
 import { setAlert } from '../../actions/alert';
@@ -9,7 +9,7 @@ import { register } from '../../actions/auth';
 import { FaUser } from 'react-icons/fa';
 
 
-const Register = ({ setAlert , register }) => {
+const Register = ({ setAlert , register , history }) => {
   const [ formData , setData ] = useState({
     name: '',
     email: '',
@@ -25,6 +25,7 @@ const Register = ({ setAlert , register }) => {
     }
     else {
       register({ name , email , password })
+      history.push('/dashboard');
     }
   }
 
@@ -100,4 +101,4 @@ Register.propTypes = {
 export default connect(
   null ,
   { setAlert , register }
-)(Register);
+)(withRouter(Register));
