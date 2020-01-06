@@ -17,7 +17,7 @@ const PostItem = ({
     return (
       <div class="post bg-white p-1 my-1">
         <div>
-          <Link to="#">
+          <Link to={`/profile/${user}`}>
             <img
               className="round-img"
               src={avatar}

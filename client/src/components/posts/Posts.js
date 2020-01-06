@@ -6,6 +6,7 @@ import { connect } from 'react-redux'
 import { getPosts } from '../../actions/posts'
 //comps.
 import PostItem from './PostItem';
+import PostForm from './PostForm'
 
 const Posts = ({ getPosts , post : { posts , loading } }) => {
   useEffect(
@@ -16,7 +17,8 @@ const Posts = ({ getPosts , post : { posts , loading } }) => {
 
   return (
     <>
-      <h1 className="text-primary">Welcome to the community</h1>
+      <h1 className="large text-primary">Welcome to the community</h1>
+      <PostForm />
       <div className="posts">
         {posts.map( post => <PostItem key={post._id} post={post}/> )}
       </div>

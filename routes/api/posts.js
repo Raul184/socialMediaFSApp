@@ -60,7 +60,7 @@ router.put(
       if(post.likes.filter(el => el.user.toString() === req.user.id).length > 0 ){
         return res.status(400).json({ msg: 'Post already liked'})
       }
-      post.likes.unshift({ user: req.user.id });
+      post.likes.push({ user: req.user.id });
       await post.save();
       res.json(post.likes);
     } 
