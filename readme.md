@@ -1,4 +1,4 @@
 Social Network App for Developers
 
 MERN stack
-Auth 
+Auth / concurrently / MomentJS / 
