@@ -232,7 +232,7 @@ router.delete(
         return res.status(404).json({ msg: 'Comment does not exists'});
       }
       //Check logIn User
-      if(coment.user.toString() !== req.user.id ){
+      if(comment.user.toString() !== req.user.id ){
         return res.status(401).json({ msg: "Authorization denied"});
       }
       //Then remove

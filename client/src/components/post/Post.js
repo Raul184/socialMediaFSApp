@@ -3,6 +3,8 @@ import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import Moment from 'react-moment'
 //spinner to be added in the future
+import Comments from './Comments'
+import Comment from './Comment'
 //redux
 import { connect } from 'react-redux';
 import { getPost } from '../../actions/posts';
@@ -35,6 +37,12 @@ const Post = ({ posts , loading , getPost , match , auth: { date , user } }) => 
         </p>
       </div>
     </div>
+    <Comments postId={posts._id}/>
+    {
+      posts.comments.map(el => {
+        return <Comment key={el._id} comment={el} postId={posts._id} />
+      })
+    }
     </>
 }
 

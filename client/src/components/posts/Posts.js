@@ -1,6 +1,6 @@
 import React , { useEffect } from 'react'
 import PropTypes from 'prop-types'
-import Spinner from '../layout/tenor.gif'
+// import Spinner from '../layout/tenor.gif'
 //redux
 import { connect } from 'react-redux'
 import { getPosts } from '../../actions/posts'
