@@ -37,6 +37,7 @@ const CreateProfile = ({ createProfile , history }) => {
   const handleSubmit = e => {
     e.preventDefault();
     createProfile( data , history );
+    history.push('/dashboard')
   }
   return (
     <>

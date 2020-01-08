@@ -13,7 +13,7 @@ const Post = ({ posts , loading , getPost , match , auth: { date , user } }) => 
   useEffect(() => {
     getPost(match.params.id)  
   }, 
-  [getPost])
+  [ getPost , match.params.id ])
   return loading  || posts === null ? 
     'Spinner loading to be added' 
     :

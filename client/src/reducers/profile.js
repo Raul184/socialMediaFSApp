@@ -6,7 +6,9 @@ import {
   DELETE_PROFILE_EXPERIENCE_SUCCESS,
   DELETE_PROFILE_EDUCATION_SUCCESS,
   DELETE_PROFILE_EDUCATION_FAIL,
-  DELETE_PROFILE_EXPERIENCE_FAIL
+  DELETE_PROFILE_EXPERIENCE_FAIL,
+  GET_PROFILES,
+  GET_REPOS
 } from '../actions/types';
 
 
@@ -25,6 +27,18 @@ export default function( state = initState , action){
       return {
         ...state ,
         ...payload ,
+        loading: false
+      }
+    case GET_PROFILES:
+      return {
+        ...state ,
+        profiles: payload , 
+        loading: false 
+      }
+    case GET_REPOS:
+      return {
+        ...state , 
+        repos: payload ,
         loading: false
       }
     case PROFILE_ERROR:

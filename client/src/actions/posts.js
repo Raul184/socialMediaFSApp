@@ -65,6 +65,7 @@ export const removeLikes = id => async dispatch => {
 // REMOVE a Post
 export const deletePost = id => async dispatch => {
   try {
+    //eslint-disable-next-line
     const res = await axios.delete(`/api/posts/${id}`);
     dispatch({
       type: DELETE_POST ,
@@ -147,6 +148,7 @@ export const addComment = (id , data) => async dispatch => {
 // DELETE a Comment
 export const deleteComment = (postId , commentId) => async dispatch => {
   try {
+    //eslint-disable-next-line
     const res = await axios.delete(`/api/posts/comment/${postId}/${commentId}`);
     dispatch({
       type: REMOVE_COMMENT ,
