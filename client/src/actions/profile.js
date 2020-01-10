@@ -84,6 +84,7 @@ export const getGithub = username => async dispatch => {
       type: PROFILE_ERROR ,
       payload: { msg: error.response.data.msg  , status: error.response.status }
     });  
+    dispatch( setAlert( error.response.data.msg , "danger"))
   }
 }
 

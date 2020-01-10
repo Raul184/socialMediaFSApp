@@ -7,6 +7,8 @@ import Header from './Header'
 import Main from './Main'
 import ProfileExp from './ProfileExp'
 import ProfileEdu from './ProfileEdu'
+import ProfileGithub from './ProfileGithub'
+
 //redux
 import { connect } from 'react-redux'
 import { getProfileById } from '../../actions/profile'
@@ -58,6 +60,11 @@ const UserProfile = ({
           <h4>No education listed</h4>
         }
       </div>
+      {
+      profile.githubusername && ( 
+        <ProfileGithub name={profile.githubusername}/>
+        )
+      }
     </div>
    </>
    :
