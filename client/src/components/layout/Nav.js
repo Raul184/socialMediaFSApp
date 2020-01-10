@@ -19,13 +19,14 @@ const Nav = ({ isAuth , logout }) => {
               <span>Dashboard</span></Link>
             </li>
             <li><Link to="/posts">Posts</Link></li> 
+            <li><Link to="/profiles">Developers</Link></li>
             <li><Link to="#" onClick={logout}><FaSignOutAlt />{' '}Logout</Link></li> 
           </>
           : 
           <>
           <li><Link to="/register">Register</Link></li>
           <li><Link to="/login">Login</Link></li>
-          <li><Link to="">Developers</Link></li>
+          <li><Link to="/profiles">Developers</Link></li>
           </>
         }        
       </ul>

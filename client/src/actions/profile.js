@@ -176,7 +176,6 @@ export const addEducation = (data , history) => async dispatch => {
 export const deleteEdu = id => async dispatch => {
   try {
     const profile = await axios.delete(`api/profile/education/${id}`)
-    console.log('DELETE Education' , profile.data);
     dispatch({
       type: DELETE_PROFILE_EDUCATION_SUCCESS ,
       payload: profile.data
@@ -214,9 +213,8 @@ export const deleteExp = id => async dispatch => {
 export const deleteAcc = () => async dispatch => {
   if(window.confirm('Are you sure? This canNOT be undone!'))
   {
-    try {
-      //eslint-disable-next-line
-      const res = await axios.delete('api/profile');
+    try {      
+      await axios.delete('api/profile');
 
       dispatch({ type: CLEAR_PROFILE })
       dispatch({ type: ACCOUNT_DELETED })

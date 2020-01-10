@@ -32,7 +32,7 @@ export default function( state = initState , action){
     case GET_PROFILES:
       return {
         ...state ,
-        profiles: payload , 
+        ...payload , 
         loading: false 
       }
     case GET_REPOS:
