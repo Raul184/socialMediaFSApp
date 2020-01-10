@@ -12,7 +12,7 @@ import EditProfile from '../profile-form/EditProfile';
 import AddExperience from '../profile-form/AddExperience';
 import AddEducation from '../profile-form/AddEducation';
 import Profile from '../profiles/Profile';
-import UserProfile from '../profiles/UserProfile';
+import UserProfile from '../userProfile/UserProfile';
 import Posts from '../posts/Posts';
 import Post from '../post/Post'
 
