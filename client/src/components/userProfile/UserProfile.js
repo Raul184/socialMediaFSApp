@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom'
 //comps.
 import Spinner from '../layout/Spinner'
 import Header from './Header'
+import Main from './Main'
 //redux
 import { connect } from 'react-redux'
 import { getProfileById } from '../../actions/profile'
@@ -33,6 +34,7 @@ const UserProfile = ({
     }
     <div className="profile-grid my-1">
       <Header profile={profile}/>
+      <Main profile={profile}/>
     </div>
    </>
    :
