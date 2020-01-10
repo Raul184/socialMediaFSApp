@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom'
 import Spinner from '../layout/Spinner'
 import Header from './Header'
 import Main from './Main'
+import ProfileExp from './ProfileExp'
+import ProfileEdu from './ProfileEdu'
 //redux
 import { connect } from 'react-redux'
 import { getProfileById } from '../../actions/profile'
@@ -21,7 +23,7 @@ const UserProfile = ({
   }, 
   [getProfileById , params.userId])
   
-  return profile && !loading ? 
+  return profile !== null && !loading ? 
    <>
     <Link to='/profiles' className="btn btn-light">
       Back
@@ -35,6 +37,27 @@ const UserProfile = ({
     <div className="profile-grid my-1">
       <Header profile={profile}/>
       <Main profile={profile}/>
+      <div className="profile-exp bg-white p-2">
+        <h2 className="text-primary">Experience</h2>
+        {
+          profile.experience.length > 0 ? 
+            profile.experience.map(el => 
+              <ProfileExp key={el._id} exp={el} />
+            )
+          : 
+          <h4>No professional experiences listed</h4>
+        }
+      </div>
+      <div className="profile-edu bg-white p-2">
+        <h2 className="text-primary">Education</h2>
+        {
+          profile.education.length > 0 ? <>
+            {profile.education.map(el => <ProfileEdu key={el._id} exp={el} />)}
+          </> 
+          : 
+          <h4>No education listed</h4>
+        }
+      </div>
     </div>
    </>
    :
